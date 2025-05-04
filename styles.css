@@ -1,0 +1,264 @@
+/* General styles */
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Light Mode */
+body.light-mode {
+    background-color: #ffffff;
+    color: #f69191;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #111;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 2px solid red;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+body.light-mode .navbar {
+    background-color: #eee;
+    border-bottom: 2px solid black;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+body.light-mode .navbar li a {
+    color: black;
+}
+
+.navbar li a:hover {
+    background-color: red;
+    border-radius: 5px;
+}
+
+/* Logo and Header */
+.logo-wrapper {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo {
+    max-width: 120px;
+    margin: 10px;
+}
+
+.name-logo {
+    max-width: 300px;
+}
+
+/* Header */
+header {
+    background-color: #e02929;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #ff0000;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Search Section */
+.search-section {
+    padding: 20px;
+    text-align: center;
+}
+
+#searchInput {
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+}
+
+body.light-mode #searchInput {
+    background-color: #ddd;
+    color: black;
+    border: 1px solid #aaa;
+}
+
+/* Video containers and featured */
+.featured-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px;
+}
+
+.featured-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.featured-container::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 4px;
+}
+
+/* Keep individual video card styles the same */
+.featured-container .video {
+    flex: 0 0 auto;
+    width: 300px;
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 3px solid red;
+    box-shadow: 0px 0px 10px red;
+}
+
+
+.video {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 560px;
+    border: 3px solid red;
+    box-shadow: 0px 0px 10px red;
+}
+
+body.light-mode .video {
+    background: #f5f5f5;
+    border: 3px solid black;
+    box-shadow: 0px 0px 10px black;
+}
+
+/* Comments Section */
+.comments-section {
+    padding: 20px;
+    background-color: #222;
+    margin: 20px;
+    border-radius: 8px;
+}
+
+body.light-mode .comments-section {
+    background-color: #eee;
+}
+
+#comment-form input,
+#comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+body.light-mode #comment-form input,
+body.light-mode #comment-form textarea {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Button */
+#comment-form button, #toggle-theme {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.slider-buttons {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.slider-buttons button {
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.slider-buttons button:hover {
+    background-color: darkred;
+}
+
+/* Switch styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
