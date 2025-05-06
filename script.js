@@ -1,4 +1,4 @@
-const API_KEY = "AIzaSyBMCaKjk7aGUIOpcVx1r6NXyKF5uJ7Kff8"; // don't share!
+const API_KEY = "AIzaSyBMCaKjk7aGUIOpcVx1r6NXyKF5uJ7Kff8";
 const CHANNEL_ID = "UCepeZdo5Q58283QID_PxIkQ";
 const MAX_RESULTS = 30;
 
@@ -30,12 +30,18 @@ async function fetchVideos() {
                 wrapper.appendChild(titleElement);
                 wrapper.appendChild(iframe);
 
-                // Add to main video container
-                document.querySelector(".video-container").appendChild(wrapper);
-
-                // Also add a copy to featured
-                const featuredCopy = wrapper.cloneNode(true);
-                document.querySelector(".featured-container").appendChild(featuredCopy);
+                if (window.location.pathname.endsWith("videos.html")) {
+                    document.querySelector(".video-container").appendChild(wrapper);
+                } else if (window.location.pathname.endsWith("shorts.html")) {
+                    // Only include shorts (filter by title or any custom tag)
+                    if (title.toLowerCase().includes("shorts") || title.toLowerCase().includes("short")) {
+                        document.querySelector(".shorts-container").appendChild(wrapper);
+                    }
+                } else {
+                    // Main (index.html) - featured section
+                    const featuredCopy = wrapper.cloneNode(true);
+                    document.querySelector(".featured-container").appendChild(featuredCopy);
+                }
             });
 
     } catch (error) {
@@ -43,55 +49,55 @@ async function fetchVideos() {
     }
 }
 
-// Search functionality
-document.getElementById("searchInput").addEventListener("input", function () {
-    const filter = this.value.toLowerCase();
-    const allVideos = document.querySelectorAll(".video-container .video");
+// Search bar
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+    searchInput.addEventListener("input", function () {
+        const filter = this.value.toLowerCase();
+        const allVideos = document.querySelectorAll(".video-container .video");
 
-    allVideos.forEach(video => {
-        const title = video.querySelector("p").textContent.toLowerCase();
-        video.style.display = title.includes(filter) ? "block" : "none";
+        allVideos.forEach(video => {
+            const title = video.querySelector("p").textContent.toLowerCase();
+            video.style.display = title.includes(filter) ? "block" : "none";
+        });
     });
-});
+}
 
-// Comments Section
-document.getElementById("comment-form").addEventListener("submit", function(event) {
-    event.preventDefault();
+// Comments
+const commentForm = document.getElementById("comment-form");
+if (commentForm) {
+    commentForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const comment = document.getElementById("comment").value;
-    const commentsList = document.getElementById("comments-list");
+        const name = document.getElementById("name").value;
+        const comment = document.getElementById("comment").value;
+        const commentsList = document.getElementById("comments-list");
 
-    if (name && comment) {
-        const commentDiv = document.createElement("div");
-        commentDiv.classList.add("comment");
-        commentDiv.innerHTML = `<strong>${name}:</strong> ${comment}`;
-        commentsList.prepend(commentDiv);
+        if (name && comment) {
+            const commentDiv = document.createElement("div");
+            commentDiv.classList.add("comment");
+            commentDiv.innerHTML = `<strong>${name}:</strong> ${comment}`;
+            commentsList.prepend(commentDiv);
 
-        document.getElementById("name").value = "";
-        document.getElementById("comment").value = "";
-    }
-});
+            document.getElementById("name").value = "";
+            document.getElementById("comment").value = "";
+        }
+    });
+}
+
+// Featured slider
+const slideLeft = document.getElementById("slideLeft");
+const slideRight = document.getElementById("slideRight");
+
+if (slideLeft && slideRight) {
+    slideLeft.addEventListener("click", () => {
+        document.querySelector(".featured-container").scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    slideRight.addEventListener("click", () => {
+        document.querySelector(".featured-container").scrollBy({ left: 300, behavior: 'smooth' });
+    });
+}
 
 // Init
 document.addEventListener("DOMContentLoaded", fetchVideos);
-
-document.getElementById("slideLeft").addEventListener("click", function() {
-    document.querySelector(".featured-container").scrollBy({ left: -300, behavior: 'smooth' });
-});
-
-document.getElementById("slideRight").addEventListener("click", function() {
-    document.querySelector(".featured-container").scrollBy({ left: 300, behavior: 'smooth' });
-});
-
-// Dark/Light Mode Toggle
-const lightModeToggle = document.getElementById("light-mode-toggle");
-const darkModeToggle = document.getElementById("dark-mode-toggle");
-
-lightModeToggle.addEventListener("click", () => {
-    document.body.classList.add("light-mode");
-});
-
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.remove("light-mode");
-});

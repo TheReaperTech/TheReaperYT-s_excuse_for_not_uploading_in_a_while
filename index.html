@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css" />
@@ -12,11 +12,10 @@
     <nav class="navbar">
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#videos-section">Videos</a></li>
-            <li><a href="#shorts-section">Shorts</a></li>
+            <li><a href="videos.html">Videos</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="#comments-section">Comments & Feedback</a></li>
-            <li><a href="settings.html">Settings</a></li> <!-- Settings page link -->
+            <li><a href="settings.html">Settings</a></li>
         </ul>
     </nav>
 
@@ -45,19 +44,6 @@
             <div class="featured-container"></div>
         </section>
     </section>
-    
-
-    <!-- All Videos Section -->
-    <section class="all-videos" id="videos-section">
-        <h2>All Videos</h2>
-        <div class="video-container"></div>
-    </section>
-
-    <!-- Shorts Section -->
-    <section class="shorts" id="shorts-section">
-        <h2>YouTube Shorts</h2>
-        <div class="shorts-container"></div>
-    </section>
 
     <!-- Comments & Feedback Section -->
     <section class="comments-section" id="comments-section">
@@ -72,7 +58,6 @@
 
     <script src="script.js"></script>
 
-    <!-- Check for saved theme preference -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             if (localStorage.getItem("theme") === "light") {
